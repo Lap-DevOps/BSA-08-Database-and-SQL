@@ -7,8 +7,7 @@ services:
     image: postgres:16.0-alpine
     volumes:
       - ./postgres/postgres_data:/var/lib/postgresql/data
-      - ./docker/01-init-user-db.sh:/docker-entrypoint-initdb.d/01-init-user-db.sh
-      - ./docker/02-entrypoint.sh:/docker-entrypoint-initdb.d/02-entrypoint.sh
+      - ./docker-entrypoint-initdb:/docker-entrypoint-initdb.d
       - ./init-db/:/init-db
       - ./seed/:/seed
       - ./queries/:/queries
