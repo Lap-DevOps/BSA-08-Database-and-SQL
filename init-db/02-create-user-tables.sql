@@ -15,12 +15,3 @@ CREATE TABLE IF NOT EXISTS user_avatars (
     FOREIGN KEY (file_id) REFERENCES files(id) ON DELETE CASCADE,
     UNIQUE(user_id, file_id)
 );
-
-CREATE TABLE IF NOT EXISTS favorite_movies (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    movie_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    UNIQUE (user_id, movie_id)
-);
