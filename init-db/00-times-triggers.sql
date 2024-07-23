@@ -1,20 +1,20 @@
-CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
-BEGIN
+create or replace function update_updated_at_column()
+RETURNS trigger AS $$
+begin
   NEW."updatedAt" = CURRENT_TIMESTAMP;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION add_timestamp_fields_and_triggers() RETURNS event_trigger LANGUAGE plpgsql AS $$
+create or replace function add_timestamp_fields_and_triggers() RETURNS event_trigger LANGUAGE plpgsql as $$
 DECLARE
   obj RECORD;
   table_name TEXT;
-BEGIN
-  FOR obj IN SELECT * FROM pg_event_trigger_ddl_commands() LOOP
-    -- Проверка, что объект является таблицей
-    IF obj.object_type = 'table' THEN
+begin
+  for obj in select * from pg_event_trigger_ddl_commands() LOOP
+
+    IF obj.object_type = 'table' AND obj.command_tag = 'CREATE TABLE' THEN
       table_name := obj.object_identity;
 
       EXECUTE 'ALTER TABLE ' || table_name || ' ADD COLUMN "createdAt" TIMESTAMP DEFAULT CURRENT_TIMESTAMP';
@@ -31,6 +31,6 @@ $$;
 
 
 
-CREATE EVENT TRIGGER table_creation_trigger ON ddl_command_end
+create EVENT TRIGGER table_creation_trigger ON ddl_command_end
   WHEN TAG IN ('CREATE TABLE')
   EXECUTE PROCEDURE add_timestamp_fields_and_triggers();

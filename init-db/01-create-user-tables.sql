@@ -18,10 +18,5 @@ create TABLE files (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-create TABLE user_files (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    file_id INTEGER NOT NULL
-);
 
 
