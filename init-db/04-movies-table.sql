@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS movies (
     FOREIGN KEY (poster_file_id) REFERENCES files(id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS favorite_movies (
+CREATE TABLE IF NOT EXISTS user_favorite_movies (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     movie_id INTEGER NOT NULL,
