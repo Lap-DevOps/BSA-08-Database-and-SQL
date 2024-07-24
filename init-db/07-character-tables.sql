@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS movie_characters (
 );
 
 
-
 CREATE TABLE IF NOT EXISTS movie_appearances (
     id SERIAL PRIMARY KEY,
     movie_id INTEGER NOT NULL,
