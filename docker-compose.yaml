@@ -8,8 +8,8 @@ services:
     volumes:
       - ./postgres/postgres_data:/var/lib/postgresql/data
       - ./docker-entrypoint-initdb:/docker-entrypoint-initdb.d
-      - ./init-db/:/init-db
-      - ./seed/:/seed
+      - ./docker-entrypoint-initdb/init-db/:/init-db
+      - ./docker-entrypoint-initdb/seed/:/seed
       - ./queries/:/queries
     environment:
       POSTGRES_PASSWORD: ${ROOT_POSTGRES_PASSWORD:-secret}

@@ -29,7 +29,7 @@ INSERT INTO movies (title, description, budget, release_date, duration, country_
 ('Titanic', 'A seventeen-year-old aristocrat falls in love with a kind but poor artist.', 200000000, '1997-12-19', '03:14:00', 2, (SELECT id FROM files WHERE file_key = 'titanic_poster_key')),
 ('Interstellar', 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity''s survival.', 165000000, '2014-11-07', '02:49:00', 1, (SELECT id FROM files WHERE file_key = 'interstellar_poster_key')),
 ('Saving Private Ryan', 'Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper.', 70000000, '1998-07-24', '02:49:00', 2, (SELECT id FROM files WHERE file_key = 'saving_private_ryan_poster_key')),
-('Django Unchained', 'With the help of a German bounty-hunter, a freed slave sets out to rescue his wife.', 100000000, '2012-12-25', '02:45:00', 3, (SELECT id FROM files WHERE file_key = 'django_unchained_poster_key')),
+('Django Unchained', 'With the help of a German bounty-hunter, a freed slave sets out to rescue his wife.', 100000000, '2022-12-25', '02:45:00', 1, (SELECT id FROM files WHERE file_key = 'django_unchained_poster_key')),
 ('The Wolf of Wall Street', 'Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.', 100000000, '2013-12-25', '03:00:00', 1, (SELECT id FROM files WHERE file_key = 'the_wolf_of_wall_street_poster_key')),
 ('Terminator 2: Judgment Day', 'A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her teenage son.', 102000000, '1991-07-03', '02:17:00', 2, (SELECT id FROM files WHERE file_key = 'terminator_2_poster_key'));
 
@@ -49,53 +49,3 @@ INSERT INTO movie_directors (movie_id, person_id) VALUES
 ((SELECT id FROM movies WHERE title = 'Django Unchained'), (SELECT id FROM persons WHERE first_name = 'Quentin' AND last_name = 'Tarantino')),
 ((SELECT id FROM movies WHERE title = 'The Wolf of Wall Street'), (SELECT id FROM persons WHERE first_name = 'Martin' AND last_name = 'Scorsese')),
 ((SELECT id FROM movies WHERE title = 'Terminator 2: Judgment Day'), (SELECT id FROM persons WHERE first_name = 'James' AND last_name = 'Cameron'));
---
---
---
--- INSERT INTO characters (name, description, role) VALUES
--- ('Cobb', 'A skilled thief, the absolute best in the dangerous art of extraction.', 'leading'),
--- ('Dr. Alan Grant', 'A paleontologist who is among the first to see living dinosaurs.', 'leading'),
--- ('Vincent Vega', 'A hitman working for mob boss Marsellus Wallace.', 'leading'),
--- ('Frank Sheeran', 'A hitman involved in the slaying of Jimmy Hoffa.', 'leading'),
--- ('Jake Sully', 'A paraplegic Marine dispatched to the moon Pandora.', 'leading'),
--- ('Bruce Wayne/Batman', 'A billionaire socialite who fights crime as the masked vigilante Batman.', 'leading'),
--- ('Elliott', 'A troubled child who befriends an extraterrestrial.', 'leading'),
--- ('The Bride', 'A former assassin seeking revenge on her ex-colleagues.', 'leading'),
--- ('Henry Hill', 'A mobster who narrates his life in the mob.', 'leading'),
--- ('Jack Dawson', 'A poor artist who wins a ticket to the Titanic.', 'leading'),
--- ('T-1000', 'A shapeshifting android assassin.', 'supporting'),
--- ('Alien Queen', 'The mother of the Xenomorph species.', 'supporting');
---
---
--- INSERT INTO character_person (character_id, person_id) VALUES
--- ((SELECT id FROM characters WHERE name = 'Cobb'), (SELECT id FROM persons WHERE first_name = 'Leonardo' AND last_name = 'DiCaprio')),
--- ((SELECT id FROM characters WHERE name = 'Dr. Alan Grant'), (SELECT id FROM persons WHERE first_name = 'Sam' AND last_name = 'Neill')),
--- ((SELECT id FROM characters WHERE name = 'Vincent Vega'), (SELECT id FROM persons WHERE first_name = 'John' AND last_name = 'Travolta')),
--- ((SELECT id FROM characters WHERE name = 'Frank Sheeran'), (SELECT id FROM persons WHERE first_name = 'Robert' AND last_name = 'De Niro')),
--- ((SELECT id FROM characters WHERE name = 'Jake Sully'), (SELECT id FROM persons WHERE first_name = 'Sam' AND last_name = 'Worthington')),
--- ((SELECT id FROM characters WHERE name = 'Bruce Wayne/Batman'), (SELECT id FROM persons WHERE first_name = 'Christian' AND last_name = 'Bale')),
--- ((SELECT id FROM characters WHERE name = 'Elliott'), (SELECT id FROM persons WHERE first_name = 'Henry' AND last_name = 'Thomas')),
--- ((SELECT id FROM characters WHERE name = 'The Bride'), (SELECT id FROM persons WHERE first_name = 'Uma' AND last_name = 'Thurman')),
--- ((SELECT id FROM characters WHERE name = 'Henry Hill'), (SELECT id FROM persons WHERE first_name = 'Ray' AND last_name = 'Liotta')),
--- ((SELECT id FROM characters WHERE name = 'Jack Dawson'), (SELECT id FROM persons WHERE first_name = 'Leonardo' AND last_name = 'DiCaprio'));
---
---
--- INSERT INTO movie_person (movie_id, person_id, character_id) VALUES
--- ((SELECT id FROM movies WHERE title = 'Inception'), (SELECT id FROM persons WHERE first_name = 'Leonardo' AND last_name = 'DiCaprio'), (SELECT id FROM characters WHERE name = 'Cobb')),
--- ((SELECT id FROM movies WHERE title = 'Jurassic Park'), (SELECT id FROM persons WHERE first_name = 'Sam' AND last_name = 'Neill'), (SELECT id FROM characters WHERE name = 'Dr. Alan Grant')),
--- ((SELECT id FROM movies WHERE title = 'Pulp Fiction'), (SELECT id FROM persons WHERE first_name = 'John' AND last_name = 'Travolta'), (SELECT id FROM characters WHERE name = 'Vincent Vega')),
--- ((SELECT id FROM movies WHERE title = 'The Irishman'), (SELECT id FROM persons WHERE first_name = 'Robert' AND last_name = 'De Niro'), (SELECT id FROM characters WHERE name = 'Frank Sheeran')),
--- ((SELECT id FROM movies WHERE title = 'Avatar'), (SELECT id FROM persons WHERE first_name = 'Sam' AND last_name = 'Worthington'), (SELECT id FROM characters WHERE name = 'Jake Sully')),
--- ((SELECT id FROM movies WHERE title = 'The Dark Knight'), (SELECT id FROM persons WHERE first_name = 'Christian' AND last_name = 'Bale'), (SELECT id FROM characters WHERE name = 'Bruce Wayne/Batman')),
--- ((SELECT id FROM movies WHERE title = 'E.T. the Extra-Terrestrial'), (SELECT id FROM persons WHERE first_name = 'Henry' AND last_name = 'Thomas'), (SELECT id FROM characters WHERE name = 'Elliott')),
--- ((SELECT id FROM movies WHERE title = 'Kill Bill: Vol. 1'), (SELECT id FROM persons WHERE first_name = 'Uma' AND last_name = 'Thurman'), (SELECT id FROM characters WHERE name = 'The Bride')),
--- ((SELECT id FROM movies WHERE title = 'Goodfellas'), (SELECT id FROM persons WHERE first_name = 'Ray' AND last_name = 'Liotta'), (SELECT id FROM characters WHERE name = 'Henry Hill')),
--- ((SELECT id FROM movies WHERE title = 'Titanic'), (SELECT id FROM persons WHERE first_name = 'Leonardo' AND last_name = 'DiCaprio'), (SELECT id FROM characters WHERE name = 'Jack Dawson'));
-
--- INSERT INTO characters (name, description, role) VALUES
--- ('T-1000', 'A shapeshifting android assassin.', 'supporting'),
--- ('Alien Queen', 'The mother of the Xenomorph species.', 'supporting');
---
--- INSERT INTO movie_person (movie_id, character_id) VALUES
--- ((SELECT id FROM movies WHERE title = 'Terminator 2: Judgment Day'), (SELECT id FROM characters WHERE name = 'T-1000')),
--- ((SELECT id FROM movies WHERE title = 'Aliens'), (SELECT id FROM characters WHERE name = 'Alien Queen'));

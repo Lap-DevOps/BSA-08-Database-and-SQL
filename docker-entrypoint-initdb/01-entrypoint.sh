@@ -27,5 +27,14 @@ for f in /seed/*; do
   echo
 done
 
+for f in /queries/*; do
+  case "$f" in
+    *.sh)  echo "$0: running $f"; . "$f" ;;
+    *.sql) echo "$0: running $f"; psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER_DEV" --dbname "$POSTGRES_DB_DEV" -f "$f"; ;;
+    *)     echo "$0: ignoring $f" ;;
+  esac
+  echo
+done
+
 exec "$@"
 
