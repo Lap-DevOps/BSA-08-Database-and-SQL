@@ -13,4 +13,6 @@ INSERT INTO genres (name) VALUES
     ('Animation'),
     ('Musical'),
     ('Crime'),
+    ('Western'),
     ('Historical');
+

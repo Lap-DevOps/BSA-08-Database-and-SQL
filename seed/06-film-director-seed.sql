@@ -15,8 +15,6 @@ INSERT INTO persons (first_name, last_name, biography, date_of_birth, gender, co
 
 
 
-
-
 INSERT INTO files (file_name, mime_type, file_key, url) VALUES
 ('christopher_nolan_photo2.png', 'image/png', 'christopher_nolan_photo2_key', 'https://example.com/christopher_nolan_photo2.png'),
 ('christopher_nolan_photo3.png', 'image/png', 'christopher_nolan_photo3_key', 'https://example.com/christopher_nolan_photo3.png'),

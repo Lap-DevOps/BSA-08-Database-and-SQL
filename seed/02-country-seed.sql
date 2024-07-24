@@ -1,6 +1,7 @@
 INSERT INTO countries (name, code) VALUES
 ('Argentina', 'AR'),
 ('Australia', 'AU'),
+('Austria', 'AT'),
 ('Brazil', 'BR'),
 ('Canada', 'CA'),
 ('China', 'CN'),
@@ -16,7 +17,6 @@ INSERT INTO countries (name, code) VALUES
 ('South Africa', 'ZA'),
 ('South Korea', 'KR'),
 ('Spain', 'ES'),
-('South Africa', 'ZA'),
 ('Sweden', 'SE'),
 ('Ukraine', 'UA'),
 ('United Kingdom', 'GB'),
