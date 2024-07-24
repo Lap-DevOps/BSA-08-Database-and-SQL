@@ -1,4 +1,4 @@
-create TABLE files (
+create TABLE files IF NOT EXISTS (
     id SERIAL PRIMARY KEY,
     file_name VARCHAR(255) NOT NULL,
     mime_type VARCHAR(100) NOT NULL,
