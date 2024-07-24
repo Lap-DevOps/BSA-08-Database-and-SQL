@@ -30,127 +30,124 @@ cat output.log
 
 ```mermaid
 
+# Database Schema Diagram
+
+```mermaid
 erDiagram
     files {
-        INT id PK
-        VARCHAR file_name
-        VARCHAR mime_type
-        VARCHAR file_key UNIQUE
-        VARCHAR url
+        int id PK
+        varchar file_name
+        varchar mime_type
+        varchar file_key UNIQUE
+        varchar url
     }
-
     users {
-        INT id PK
-        VARCHAR username UNIQUE
-        VARCHAR first_name
-        VARCHAR last_name
-        VARCHAR email UNIQUE
-        VARCHAR password
+        int id PK
+        varchar username UNIQUE
+        varchar first_name
+        varchar last_name
+        varchar email UNIQUE
+        varchar password
     }
-
     user_avatars {
-        INT id PK
-        INT user_id FK
-        INT file_id FK UNIQUE
+        int id PK
+        int user_id FK
+        int file_id FK UNIQUE
     }
+    users ||--o{ user_avatars : has
+    files ||--o| user_avatars : is
 
     countries {
-        INT id PK
-        VARCHAR name UNIQUE
-        VARCHAR code UNIQUE
+        int id PK
+        varchar name UNIQUE
+        varchar code UNIQUE
     }
+    persons {
+        int id PK
+        varchar first_name
+        varchar last_name
+        text biography
+        date date_of_birth
+        enum gender
+        int country_of_origin_id FK
+        int main_photo_id FK
+    }
+    countries ||--o{ persons : originates
+    files ||--o| persons : has_photo
 
     movies {
-        INT id PK
-        VARCHAR title
-        TEXT description
-        NUMERIC budget
-        DATE release_date
-        INTERVAL duration
-        INT country_id FK
-        INT poster_file_id FK
+        int id PK
+        varchar title
+        text description
+        numeric budget
+        date release_date
+        interval duration
+        int country_id FK
+        int poster_file_id FK
     }
+    files ||--o| movies : is_poster
 
     user_favorite_movies {
-        INT id PK
-        INT user_id FK
-        INT movie_id FK
+        int id PK
+        int user_id FK
+        int movie_id FK
     }
+    users ||--o{ user_favorite_movies : favorites
+    movies ||--o| user_favorite_movies : is
 
     genres {
-        INT id PK
-        VARCHAR name UNIQUE
+        int id PK
+        varchar name UNIQUE
     }
-
     movie_genres {
-        INT movie_id FK
-        INT genre_id FK
-        PRIMARY KEY (movie_id, genre_id)
+        int movie_id FK
+        int genre_id FK
+        PK (movie_id, genre_id)
     }
-
-    persons {
-        INT id PK
-        VARCHAR first_name
-        VARCHAR last_name
-        TEXT biography
-        DATE date_of_birth
-        ENUM gender
-        INT country_of_origin_id FK
-        INT main_photo_id FK
-    }
-
-    person_photos {
-        INT id PK
-        INT file_id FK
-        INT person_id FK
-        UNIQUE (file_id, person_id)
-    }
+    movies ||--o{ movie_genres : has
+    genres ||--o| movie_genres : is
 
     movie_directors {
-        INT id PK
-        INT movie_id FK
-        INT person_id FK
+        int id PK
+        int movie_id FK
+        int person_id FK
         UNIQUE (movie_id, person_id)
     }
+    movies ||--o{ movie_directors : directed_by
+    persons ||--o| movie_directors : directs
 
     characters {
-        INT id PK
-        VARCHAR name
-        TEXT description
-        ENUM role NOT NULL
-        INT person_id FK
+        int id PK
+        varchar name
+        text description
+        enum role NOT NULL
+        int person_id FK
     }
-
     movie_characters {
-        INT movie_id FK
-        INT character_id FK
-        PRIMARY KEY (movie_id, character_id)
+        int movie_id FK
+        int character_id FK
+        PK (movie_id, character_id)
     }
+    movies ||--o{ movie_characters : features
+    characters ||--o| movie_characters : is
 
     movie_appearances {
-        INT id PK
-        INT movie_id FK
-        INT person_id FK
-        BOOLEAN is_non_character NOT NULL DEFAULT TRUE
+        int id PK
+        int movie_id FK
+        int person_id FK
+        boolean is_non_character NOT NULL DEFAULT TRUE
     }
+    persons ||--o{ movie_appearances : appears_in
+    movies ||--o| movie_appearances : features
 
-    users ||--o{ user_avatars : "has"
-    files ||--o| user_avatars : "is"
-    users ||--o{ user_favorite_movies : "favorites"
-    movies ||--o| user_favorite_movies : "is"
-    countries ||--o{ persons : "originates"
-    files ||--o| persons : "has photo"
-    files ||--o| movies : "is poster"
-    movies ||--o{ movie_genres : "has"
-    genres ||--o| movie_genres : "is"
-    movies ||--o{ movie_directors : "directed by"
-    persons ||--o| movie_directors : "directs"
-    persons ||--o{ characters : "portrays"
-    movies ||--o{ movie_characters : "features"
-    characters ||--o| movie_characters : "is"
-    persons ||--o{ movie_appearances : "appears in"
-    movies ||--o| movie_appearances : "features"
-    files ||--o| person_photos : "is"
-    persons ||--o| person_photos : "has photo"
+    person_photos {
+        int id PK
+        int file_id FK
+        int person_id FK
+        UNIQUE (file_id, person_id)
+    }
+    files ||--o| person_photos : is
+    persons ||--o| person_photos : has_photo
+
 
 ```
