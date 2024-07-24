@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS movie_genres (
     FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE
 );
 
-CREATE TYPE gender AS ENUM ('Male', 'Female', 'Other', 'Unknown');
+CREATE TYPE IF NOT EXISTS gender AS ENUM ('Male', 'Female', 'Other', 'Unknown');
 
 CREATE TABLE IF NOT EXISTS persons (
     id SERIAL PRIMARY KEY,
@@ -99,8 +99,7 @@ CREATE TABLE IF NOT EXISTS movie_directors (
     UNIQUE (movie_id, person_id)
 );
 
-CREATE TYPE role_type AS ENUM ('leading', 'supporting', 'background');
-
+CREATE TYPE  IF NOT EXISTS role_type AS ENUM ('leading', 'supporting', 'background');
 
 CREATE TABLE IF NOT EXISTS characters (
     id SERIAL PRIMARY KEY,
@@ -111,7 +110,6 @@ CREATE TABLE IF NOT EXISTS characters (
     FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE SET NULL
 );
 
-
 CREATE TABLE IF NOT EXISTS movie_characters (
     movie_id INTEGER NOT NULL,
     character_id INTEGER NOT NULL,
@@ -119,7 +117,6 @@ CREATE TABLE IF NOT EXISTS movie_characters (
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
     FOREIGN KEY (character_id) REFERENCES characters(id) ON DELETE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS movie_appearances (
     id SERIAL PRIMARY KEY,
