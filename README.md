@@ -30,8 +30,6 @@ cat output.log
 
 ```mermaid
 
-# Database Schema Diagram
-
 erDiagram
     files {
         int id PK
