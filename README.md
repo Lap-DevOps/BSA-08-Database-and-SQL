@@ -107,8 +107,8 @@ int movie_id FK
 datetime created_at
 datetime updated_at
 }
-users ||--o{ user_favorite_movies : "user_id"
 movies ||--o{ user_favorite_movies : "movie_id"
+users ||--o{ user_favorite_movies : "user_id"
 
 genres {
 int id PK
@@ -146,14 +146,16 @@ datetime created_at
 datetime updated_at
 }
 
+characters ||--o{ persons : "person_id"
+
 movie_characters {
 int movie_id FK
 int character_id FK
 datetime created_at
 datetime updated_at
     }
-movies ||--o{ movie_characters : "movie_id"
 characters ||--o{ movie_characters : "character_id"
+movies ||--o{ movie_characters : "movie_id"
 
 movie_appearances {
 int id PK
@@ -173,7 +175,7 @@ int person_id FK
 datetime created_at
 datetime updated_at
 }
-files ||--|{ person_photos : "file_id"
 persons ||--o{ person_photos : "person_id"
+files ||--|{ person_photos : "file_id"
 
 ```
