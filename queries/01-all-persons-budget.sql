@@ -8,8 +8,8 @@ WITH actors AS (
 
 character_movies AS (
     SELECT a.actor_id,
-           a.first_name,
-           a.last_name,
+           a.first_name AS first_name,
+           a.last_name AS last_name,
            m.budget AS movie_budget
     FROM movies m
     JOIN movie_characters mc ON m.id = mc.movie_id
@@ -19,8 +19,8 @@ character_movies AS (
 
 non_character_movies AS (
     SELECT a.actor_id,
-           a.first_name,
-           a.last_name,
+           a.first_name AS first_name,
+           a.last_name AS last_name,
            m.budget AS movie_budget
     FROM movies m
     JOIN movie_appearances ma ON m.id = ma.movie_id
@@ -28,10 +28,9 @@ non_character_movies AS (
     WHERE ma.is_non_character = TRUE
 )
 
-
-SELECT actor_id as ID,
-       first_name as "First name",
-       last_name as "Last name",
+SELECT actor_id AS "ID",
+       first_name AS "First name",
+       last_name AS "Last name",
        SUM(movie_budget) AS "Total movies budget"
 FROM (
     SELECT actor_id, first_name, last_name, movie_budget

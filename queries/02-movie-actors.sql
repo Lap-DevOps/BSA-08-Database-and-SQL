@@ -21,8 +21,8 @@ movie_appearances_count AS (
     GROUP BY ma.movie_id
 )
 SELECT
-    rm.id AS ID,
-    rm.title AS Title,
+    rm.id AS "ID",
+    rm.title AS "Title",
     COUNT(DISTINCT mcp.person_id) + COALESCE(mac.number_of_appearances, 0) AS "Actors count"
 FROM recent_movies rm
 LEFT JOIN movie_characters_with_persons mcp ON rm.id = mcp.movie_id
